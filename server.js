@@ -14,7 +14,7 @@ app.get("/", async (req, res) => {
   }
 
   try {
-    const r = await fetch("http://metin-live.sesisoft.com:7777/api/rank", {
+    const r = await fetch("https://metin-live.sesisoft.com:7777/api/rank", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: "type=1&group_num=14&cunique=132465",
