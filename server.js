@@ -18,12 +18,17 @@ app.get("/", async (req, res) => {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: "type=1&group_num=14&cunique=132465",
+      signal: AbortSignal.timeout(15000),
     });
     const data = await r.text();
     cache = { data, time: Date.now() };
     res.send(data);
   } catch (e) {
-    res.status(500).json({ error: e.message });
+    res.status(500).json({
+      message: e.message,
+      cause: e.cause ? String(e.cause) : null,
+      code: e.cause?.code || e.code || null,
+    });
   }
 });
 
